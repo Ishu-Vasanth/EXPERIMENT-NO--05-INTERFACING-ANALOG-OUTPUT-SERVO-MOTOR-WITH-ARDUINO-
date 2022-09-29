@@ -1,5 +1,8 @@
 # EXPERIMENT NO 05 INTERFACING ANALOG OUTPUT SERVO MOTOR WITH ARDUINO
 
+NAME: ISHWARYA V
+
+REG NO: 212221240016
 ### AIM
 To interface an Analog output (servo motor) and modify the angular displacement of the servo using PWM signal .
 COMPONENTS REQUIRED:
@@ -54,6 +57,8 @@ CIRCUIT DIAGRAM
 
 ### FIGURE 04 CIRCUIT DIAGRAM
 
+![output](op.png)
+
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
 2.	Connect the board to your computer via the USB cable.
@@ -67,15 +72,80 @@ CIRCUIT DIAGRAM
 
 
 ### PROGRAM :
+## SERIAL MONITOR:
+```
+// C++ code
+
+#include <Servo.h>
+int pos = 0;
+Servo servo_9;
+
+void setup()
+{
+ Serial.begin(9600);
+ servo_9.attach(9, 500, 2500);//
  
+}
+
+void loop()
+{
+ for (pos = 0; pos <= 180; pos += 1) 
+ {
+   servo_9.write(pos);
+   delay(15);
+ 	Serial.print("Angle of Server: ");
+ 	Serial.println(pos);
+ }
+ for (pos = 180; pos >= 0; pos -= 1) 
+ {
+   servo_9.write(pos);
+   delay(15);
+ 	Serial.print("Angle of Server: ");
+ 	Serial.println(pos);
+ }
+}
+
+```
+### OUTPUT: 
+
+![output](op1.png)
 
 
+## Toggle Graph:
+```
+// C++ code
 
+#include <Servo.h>
+int pos = 0;
+Servo servo_9;
 
+void setup()
+{
+  Serial.begin(9600);
+  servo_9.attach(9, 500, 2500);//
+  
+}
 
+void loop()
+{
+  for (pos = 0; pos <= 180; pos += 1) 
+  {
+    servo_9.write(pos);
+    delay(15);
+  	Serial.println(pos);
+  }
+  for (pos = 180; pos >= 0; pos -= 1) 
+  {
+    servo_9.write(pos);
+    delay(15);
+  	Serial.println(pos);
+  }
+}
 
+```
+### OUTPUT:
 
-
+![output](op2.png)
 
 ### RESULTS: 
 Arduino uno interfacing with servo motor is learned and angular position is controlled using PWM signal.
